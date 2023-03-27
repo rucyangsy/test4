@@ -510,7 +510,7 @@ class CNNBase(NNBase):
         return loss, output, image_b_keypoints_maps
 
     def info_nce_loss(self, features):
-        batch_size = self.num_processes * self.train_selfsup_attention_batch_size
+        batch_size = self.num_processes
         labels = torch.cat([torch.arange(batch_size) for i in range(2)], dim=0)       #[256,1)
         labels = (labels.unsqueeze(0) == labels.unsqueeze(1)).float() #[256,256]
         labels = labels.to(self.device)
